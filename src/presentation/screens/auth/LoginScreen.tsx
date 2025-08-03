@@ -1,18 +1,24 @@
 import { useState } from 'react';
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { ScrollView, useWindowDimensions, StyleSheet } from 'react-native';
+import { ScrollView, useWindowDimensions, StyleSheet, Alert } from 'react-native';
 import { Input } from '../../components/ui/Input';
 import { RootStackParamList } from '../../navigators/StackNavigator';
 import { StackScreenProps } from '@react-navigation/stack';
-// import { API_URL } from '@env';
+import { useAuthStore } from '../../store/auth/useAuthStore';
 
 interface Props extends StackScreenProps<RootStackParamList, 'Login'>{}
 
 export const LoginScreen = ({navigation}:Props) => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const {login} = useAuthStore();
     const { height } = useWindowDimensions();
-    // console.log(API_URL)
+    const onLogin = async () => {
+        if(email === '' || password === '') return;
+        
+        const wasSuccessfull = await login(email, password);
+        console.log(wasSuccessfull)
+    }
     return (
         <Layout style={{flex:1}}>
             <ScrollView style={{marginHorizontal:40}}>
@@ -35,7 +41,7 @@ export const LoginScreen = ({navigation}:Props) => {
                     secureTextEntry
                 />
                 <Layout style={{height: 30}} />
-                <Button onPress={() => {}} style={{borderRadius: 20}}>
+                <Button onPress={onLogin} style={{borderRadius: 20}}>
                     Ingresar
                 </Button>
                 <Layout style={{height: 30}} />
