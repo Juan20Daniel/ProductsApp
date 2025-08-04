@@ -11,13 +11,17 @@ interface Props extends StackScreenProps<RootStackParamList, 'Login'>{}
 export const LoginScreen = ({navigation}:Props) => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ isPosting, setIsPosting ] = useState(false);
     const {login} = useAuthStore();
     const { height } = useWindowDimensions();
+
     const onLogin = async () => {
+        setIsPosting(true);
         if(email === '' || password === '') return;
-        
         const wasSuccessfull = await login(email, password);
-        console.log(wasSuccessfull)
+        setIsPosting(false);
+        if(wasSuccessfull) return;
+        Alert.alert('Error', 'Usuario o contraseña incorrectos');
     }
     return (
         <Layout style={{flex:1}}>
@@ -41,7 +45,11 @@ export const LoginScreen = ({navigation}:Props) => {
                     secureTextEntry
                 />
                 <Layout style={{height: 30}} />
-                <Button onPress={onLogin} style={{borderRadius: 20}}>
+                <Button 
+                    onPress={onLogin} 
+                    style={{borderRadius: 20}}
+                    disabled={isPosting}
+                >
                     Ingresar
                 </Button>
                 <Layout style={{height: 30}} />

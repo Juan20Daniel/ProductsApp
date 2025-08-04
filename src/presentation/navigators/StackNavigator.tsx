@@ -17,7 +17,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Login'>
+    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Loading'>
       <Stack.Screen name="Loading" component={LoadingScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />

@@ -1,13 +1,13 @@
 import { Button, Layout, Text } from '@ui-kitten/components';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
+import { useAuthStore } from '../../store/auth/useAuthStore';
 
 export const HomeScreen = () => {
-    const { top } = useSafeAreaInsets();
+    const { logout } = useAuthStore();
+
     return (
-        <Layout style={{marginTop: top+20, flex:1, justifyContent: 'center', alignItems:'center'}}>
+        <Layout style={{flex:1, justifyContent: 'center', alignItems:'center'}}>
             <Text>HomeScreen</Text>
-            <Button>
+            <Button onPress={logout}>
                 Cerrar sesión
             </Button>
         </Layout>

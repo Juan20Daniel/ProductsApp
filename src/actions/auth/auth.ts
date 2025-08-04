@@ -1,5 +1,5 @@
 import { tesloApi } from "../../config/api/tesloApi";
-import { User } from "../../domain/entities/user";
+import type { User } from "../../domain/entities/user";
 import type { AuthResponseAPI } from "../../infrastructure/interfaces/auth.responses";
 
 const returnUserToken = (data:AuthResponseAPI) => {
@@ -23,10 +23,33 @@ export const authLogin = async (email:string, password:string) => {
             email,
             password
         });
-        console.log('exce')
         return returnUserToken(data);
     } catch (error) {
         console.log(error);
         return null;
+    }
+}
+
+export const authCheckStatus = async () => {
+    try {
+        const {data} = await tesloApi.get<AuthResponseAPI>('/auth/check-status');
+        return returnUserToken(data);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export const authRegister = async (fullName:string, email:string, password:string) => {
+    try {
+        const { data } = await tesloApi.post<AuthResponseAPI>('/auth/register',{
+            fullName,
+            email,
+            password
+        });
+        return returnUserToken(data);
+    } catch (error) {
+        console.log(error);
+        throw new Error("Error al crear el usuario.");
     }
 }
