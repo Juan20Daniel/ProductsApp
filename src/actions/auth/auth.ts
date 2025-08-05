@@ -2,7 +2,7 @@ import { tesloApi } from "../../config/api/tesloApi";
 import type { User } from "../../domain/entities/user";
 import type { AuthResponseAPI } from "../../infrastructure/interfaces/auth.responses";
 
-const returnUserToken = (data:AuthResponseAPI) => {
+const userToken = (data:AuthResponseAPI) => {
     const user:User = {
         id:data.id,
         fullName: data.fullName,
@@ -23,7 +23,7 @@ export const authLogin = async (email:string, password:string) => {
             email,
             password
         });
-        return returnUserToken(data);
+        return userToken(data);
     } catch (error) {
         console.log(error);
         return null;
@@ -33,7 +33,7 @@ export const authLogin = async (email:string, password:string) => {
 export const authCheckStatus = async () => {
     try {
         const {data} = await tesloApi.get<AuthResponseAPI>('/auth/check-status');
-        return returnUserToken(data);
+        return userToken(data);
     } catch (error) {
         console.log(error);
         return null;
@@ -47,7 +47,7 @@ export const authRegister = async (fullName:string, email:string, password:strin
             email,
             password
         });
-        return returnUserToken(data);
+        return userToken(data);
     } catch (error) {
         console.log(error);
         throw new Error("Error al crear el usuario.");

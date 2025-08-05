@@ -38,7 +38,7 @@ export const RegisterScreen = ({navigation}:Props) => {
                     state={fullname}
                     setState={setFullname}
                     placeholder='Ingresa tu nombre y apellidos'
-                    placeholderFocus='Nombre y apellidos'
+                    placeholderFocus='Nombre y apellido'
                 />
                 <Input
                     state={email}
