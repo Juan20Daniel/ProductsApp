@@ -12,8 +12,8 @@ export const LoginScreen = ({navigation}:Props) => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ isPosting, setIsPosting ] = useState(false);
-    const {login} = useAuthStore();
     const { height } = useWindowDimensions();
+    const {login} = useAuthStore();
 
     const onLogin = async () => {
         setIsPosting(true);

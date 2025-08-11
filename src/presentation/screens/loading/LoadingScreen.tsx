@@ -1,14 +1,10 @@
 import { Layout, Text } from '@ui-kitten/components';
-import { ActivityIndicator, useColorScheme } from 'react-native';
+import { Spinner } from '../../components/ui/Spinner';
 
 export const LoadingScreen = () => {
-    const colorSchema = useColorScheme();
     return (
         <Layout style={{flex:1, justifyContent:'center', alignItems:'center', gap: 10}}>
-            <ActivityIndicator 
-                size={60} 
-                color={colorSchema === 'dark' ? 'white' : 'black'}
-            />
+            <Spinner size={70} />
             <Text >Cargndo...</Text>
         </Layout>
     );

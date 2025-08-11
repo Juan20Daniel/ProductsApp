@@ -17,11 +17,11 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export const StackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Home'>
-      <Stack.Screen name="Loading" component={LoadingScreen} />
+    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Loading'>
+      <Stack.Screen name="Loading" component={LoadingScreen} options={{animation:'fade'}} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{animation:'fade'}}/>
       <Stack.Screen name="Product" component={ProductScreen} />
     </Stack.Navigator>
   );

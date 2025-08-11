@@ -1,5 +1,4 @@
 import { Layout } from '@ui-kitten/components';
-import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TopNavigation } from '../components/ui/TopNavigation';
 
@@ -18,8 +17,8 @@ export const MainLayout = ({ title, subTitle, rightAction, rightActionIcon, chil
     return (
         <Layout style={{paddingTop: top, flex:1}}>
             <TopNavigation 
-                title='TesloShop - Products'
-                subTitle='Aplicación administrativa'
+                title={title}
+                subTitle={subTitle}
             />
             {children}
         </Layout>

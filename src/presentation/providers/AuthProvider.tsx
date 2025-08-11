@@ -19,14 +19,10 @@ export const AuthProvider = ({children}:PropsWithChildren) => {
                     routes:[{name:'Home'}]
                 });
             } else {
-                 navigation.reset({
+                navigation.reset({
                     index:0,
-                    routes:[{name:'Home'}]
+                    routes:[{name:'Login'}]
                 });
-                // navigation.reset({
-                //     index:0,
-                //     routes:[{name:'Login'}]
-                // });
             }
         }
     },[status]);

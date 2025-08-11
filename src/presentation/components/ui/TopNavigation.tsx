@@ -1,6 +1,6 @@
 import { Layout, Text } from '@ui-kitten/components';
 import { Icon } from './Icon';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, useColorScheme } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../navigators/StackNavigator';
 
@@ -22,22 +22,24 @@ export const TopNavigation = ({
     rightActionIcon
 }:Props) => {
     const navigate = useNavigation<NavigationProp<RootStackParamList>>();
+    const colorScheme = useColorScheme();
     return (
         <Layout style={styles.container}>
             <Layout style={styles.boxBtnLeft}>
-                {navigate.canGoBack() 
-                    ?  <Pressable
+                {navigate.canGoBack() &&
+                      <Pressable
                             style={({pressed}) => [
                                 {opacity: pressed ? 0.5 : 1}
                             ]}
+                            onPress={() => navigate.goBack()}
                         >
                             <Icon 
                                 name={leftActionIcon??'arrow-back-outline'} 
-                                color='white' 
+                                color={colorScheme === 'dark' ? 'white' : 'black'}
                                 size={40}
                             />
                         </Pressable>
-                    : null
+                    
                 }
                
             </Layout>
